@@ -1,24 +1,46 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+
+const DIST_DIR = path.resolve(__dirname, 'dist');
+const SRC_DIR = path.resolve(__dirname, 'src');
 
 module.exports = {
-    mode: 'development',
-    entry: path.resolve(__dirname, 'src', 'index.js'),
-    output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'bundle.js'
-    },
-    module: {
-        rules: [
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                loader: 'babel-loader',
-                options: {
-                    presets: ["@babel/preset-env", "@babel/preset-react"]
-                }
-            }
-        ]
-    },
-    plugins: [new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'index.html') })]
+    entry: SRC_DIR + '/index.js',
+  output: {
+    path: DIST_DIR,
+    filename: 'bundle.js',
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.css']
+},
+devServer: {
+    historyApiFallback: true,
+},
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.css$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebPackPlugin({
+      template: SRC_DIR+'/index.html',
+    }),
+  ],
 };
