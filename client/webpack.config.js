@@ -14,6 +14,7 @@ module.exports = {
     extensions: ['.js', '.jsx', '.css']
 },
 devServer: {
+    port: 8080,
     historyApiFallback: true,
 },
   module: {
