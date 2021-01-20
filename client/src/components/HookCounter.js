@@ -3,11 +3,11 @@ import Button from '@material-ui/core/Button'
 
 function HookCounter() {
 
-    const [x, setCount] = useState(0)
+    const [count, setCount] = useState(0)
 
     return (
         <div>
-            <Button onClick={() => setCount(x + 1)}>Count {x}</Button>
+            <Button onClick={() => setCount(count + 1)}>Count {count}</Button>
         </div>
     )
 }
