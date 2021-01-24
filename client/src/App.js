@@ -1,12 +1,13 @@
 import React from 'react'
-import ClassCounter from './components/ClassCounter'
-import HookCounter from './components/HookCounter'
+import NavBar from './components/NavBar/NavBar'
+import {BrowserRouter as Router} from 'react-router-dom'
 
 function App() {
     return (
         <div className='App'>
-            <ClassCounter />
-            <HookCounter />
+            <Router>
+                <NavBar />
+            </Router>
         </div>
     )
 }
